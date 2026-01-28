@@ -1,1 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Send Email</title>
+</head>
+<body>
 
+<h2>Send Email</h2>
+<p>Click the button below to open your mail app.</p>
+
+<button onclick="sendMail()">📧 Send Email</button>
+
+<script>
+  function getParam(name) {
+    return new URLSearchParams(window.location.search).get(name) || "";
+  }
+
+  function sendMail() {
+    const to = encodeURIComponent(getParam("to"));
+    const subject = encodeURIComponent(getParam("subject"));
+    const body = encodeURIComponent(getParam("body"));
+
+    const mailto =
+      `mailto:${to}?subject=${subject}&body=${body}`;
+
+    window.location.href = mailto;
+  }
+</script>
+
+</body>
+</html>
